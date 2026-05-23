@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <!-- === Meta & SEO ==================================================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTERNATIONAL GOSPEL ACTS CHURCH – MWEA BRANCH</title>
+    <meta name="description"
+          content="Inspirational, modern, and interactive website for International Gospel Acts Church Mwea Branch. Join us for worship, sermons, events and more.">
+    <meta name="theme-color" content="#020617">
+
+    <!-- === Favicons ===================================================== -->
+    <link rel="icon" href="https://source.unsplash.com/80x80/?cross">
+
+    <!-- === Google Fonts ================================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- === Tailwind (CDN) =============================================== -->
+    <script>
+        // Tailwind custom config for a polished dark church theme
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#D4AF37',
+                        secondary: '#CBD5E1',
+                        accent: '#C8102E',
+                        dark: '#020617',
+                        surface: '#0F172A',
+                        soft: '#111827'
+                    },
+                    fontFamily: {
+                        heading: ['Cormorant Garamond', 'serif'],
+                        body: ['Inter', 'sans-serif']
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    },
+                    animation: {
+                        float: 'float 4s ease-in-out infinite'
+                    }
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- === Alpine.js (reactivity) ======================================= -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x/dist/cdn.min.js"></script>
+
+    <!-- === Swiper (carousels) =========================================== -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+
+    <!-- === AOS (scroll animations) ===================================== -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+
+    <!-- === GLightbox (gallery lightbox) ================================ -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/css/glightbox.min.css"/>
+
+    <!-- === Typed.js (typewriter effect) =============================== -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+    <!-- === CountUp (animated counters) ================================ -->
+    <script src="https://cdn.jsdelivr.net/npm/countup.js@2.0.8/dist/countUp.min.js"></script>
+
+    <!-- === Custom CSS (glow, overrides) ================================ -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+
+<body class="font-body bg-dark text-secondary">
+
+<!-- ==== 1️⃣ Sticky Navigation Bar ===================================== -->
+<header x-data="{ open: false }"
+        class="fixed w-full z-50 bg-dark/90 backdrop-blur-sm shadow-md"
+        id="navbar">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-20">
+        <a href="#home" class="flex items-center space-x-3">
+            <img src="logo.png" alt="IGAC Logo"
+                 class="h-12 w-12 rounded-full object-cover">
+            <span class="text-2xl font-heading font-bold text-primary">IGAC Mwea</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden lg:flex space-x-8">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#leadership" class="nav-link">Leadership</a>
+            <a href="#gallery" class="nav-link">Gallery</a>
+            <a href="#sermons" class="nav-link">Sermons</a>
+            <a href="#events" class="nav-link">Events</a>
+            <a href="#ministries" class="nav-link">Ministries</a>
+            <a href="#contact" class="nav-link">Contact</a>
+            <a href="#donation" class="nav-link">Give</a>
+        </nav>
+
+        <!-- Mobile Hamburger -->
+        <button @click="open = !open"
+                class="lg:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+            <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary"
+                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg x-show="open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary"
+                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Mobile Nav (slide‑down) -->
+    <nav x-show="open" x-transition class="lg:hidden bg-dark/90 backdrop-blur-xl border-t border-slate-700 shadow-2xl">
+        <div class="px-6 py-4 space-y-4">
+            <a href="#home" @click="open = false" class="block mobile-nav-link">Home</a>
+            <a href="#about" @click="open = false" class="block mobile-nav-link">About</a>
+            <a href="#leadership" @click="open = false" class="block mobile-nav-link">Leadership</a>
+            <a href="#gallery" @click="open = false" class="block mobile-nav-link">Gallery</a>
+            <a href="#sermons" @click="open = false" class="block mobile-nav-link">Sermons</a>
+            <a href="#events" @click="open = false" class="block mobile-nav-link">Events</a>
+            <a href="#ministries" @click="open = false" class="block mobile-nav-link">Ministries</a>
+            <a href="#contact" @click="open = false" class="block mobile-nav-link">Contact</a>
+            <a href="#donation" @click="open = false" class="block mobile-nav-link">Give</a>
+        </div>
+    </nav>
+</header>
+
+<!-- ==== 2️⃣ Hero / Slider =========================================== -->
+<section id="home" class="relative overflow-hidden" style="min-height:calc(100vh - 5rem);">
+    <!-- Swiper -->
+    <div class="swiper heroSwiper" style="height:calc(100vh - 5rem);">
+        <div class="swiper-wrapper">
+            <!-- Slide 1 -->
+            <div class="swiper-slide relative overflow-hidden"
+                 style="height:calc(100vh - 5rem);">
+                <div class="hero-bg absolute inset-0 bg-cover bg-center"
+                     style="background-image:url('image-1.jpg')"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-primary/70 to-secondary/70"></div>
+                <div class="relative h-full flex flex-col justify-center max-w-4xl mx-auto text-center text-white px-4">
+                    <h1 class="text-5xl md:text-6xl font-heading font-bold mb-4 animate-float">
+                        <span id="typed-hero"></span>
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8">Welcome to the family of God, where love meets worship.</p>
+                    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5 justify-center">
+                        <button type="button" data-section-target="about"
+                                class="hero-action hero-action-secondary">
+                            About Us
+                        </button>
+                        <button type="button" data-section-target="ministries"
+                                class="hero-action hero-action-secondary">
+                            Ministries
+                        </button>
+                        <button type="button" data-section-target="sermons"
+                                class="hero-action hero-action-secondary">
+                            Sermons
+                        </button>
+                        <button type="button" data-section-target="events"
+                                class="hero-action hero-action-secondary">
+                            Events
+                        </button>
+                        <button type="button" data-section-target="contact"
+                                class="hero-action hero-action-primary">
+                            Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="swiper-slide relative overflow-hidden"
+                 style="height:calc(100vh - 5rem);">
+                <div class="hero-bg absolute inset-0 bg-cover bg-center"
+                     style="background-image:url('image-2.jpg')"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-primary/70 to-secondary/70"></div>
+                <div class="relative h-full flex flex-col justify-center max-w-4xl mx-auto text-center text-white px-4">
+                    <h1 class="text-5xl md:text-6xl font-heading font-bold mb-4 animate-float">
+                        <span id="typed-hero-2"></span>
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8">Building lives through Christ's love and anointed worship.</p>
+                    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5 justify-center">
+                        <button type="button" data-section-target="about"
+                                class="hero-action hero-action-secondary">
+                            About Us
+                        </button>
+                        <button type="button" data-section-target="ministries"
+                                class="hero-action hero-action-secondary">
+                            Ministries
+                        </button>
+                        <button type="button" data-section-target="sermons"
+                                class="hero-action hero-action-secondary">
+                            Sermons
+                        </button>
+                        <button type="button" data-section-target="events"
+                                class="hero-action hero-action-secondary">
+                            Events
+                        </button>
+                        <button type="button" data-section-target="contact"
+                                class="hero-action hero-action-primary">
+                            Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+
+<!-- ==== 3️⃣ Welcome Message & Weekly Verse ============================ -->
+<section id="welcome" class="py-20 bg-beige">
+    <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+        <div data-aos="fade-right">
+            <h2 class="text-4xl font-heading text-primary mb-4">A Warm Welcome</h2>
+            <p class="text-lg leading-relaxed text-secondary">
+                Praise the Lord! We are delighted you’re here. Our heart beats for the
+                Kingdom of God and we invite you to encounter Him personally,
+                grow together in faith, and go out to bless the world.
+            </p>
+        </div>
+        <div data-aos="fade-left" class="bg-white p-8 rounded-xl shadow-lg">
+            <h3 class="text-2xl font-heading text-primary mb-2">Weekly Scripture</h3>
+            <blockquote class="italic text-lg text-secondary">
+                “For where two or three are gathered in my name, there am I among
+                them.” — <span class="font-bold">Matthew 18:20</span>
+            </blockquote>
+        </div>
+    </div>
+</section>
+
+<!-- ==== 4️⃣ Service Times Cards ===================================== -->
+<section id="services" class="py-12 bg-white">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 class="text-4xl font-heading text-primary mb-10" data-aos="fade-up">Service Times</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="service-card service-card--gold p-6 rounded-xl shadow card-hover"
+                 data-aos="zoom-in">
+                <div class="service-accent"></div>
+                <h3 class="text-2xl font-heading text-primary mb-2">Sunday Service</h3>
+                <p class="text-lg text-secondary">9:30 AM – 11:30 AM</p>
+            </div>
+            <div class="service-card service-card--teal p-6 rounded-xl shadow card-hover"
+                 data-aos="zoom-in" data-aos-delay="100">
+                <div class="service-accent"></div>
+                <h3 class="text-2xl font-heading text-primary mb-2">Mid‑Week Prayer</h3>
+                <p class="text-lg text-secondary">Wednesday 7:00 PM – 8:30 PM</p>
+            </div>
+            <div class="service-card service-card--amber p-6 rounded-xl shadow card-hover"
+                 data-aos="zoom-in" data-aos-delay="200">
+                <div class="service-accent"></div>
+                <h3 class="text-2xl font-heading text-primary mb-2">Youth Fellowship</h3>
+                <p class="text-lg text-secondary">Friday 6:30 PM – 8:00 PM</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==== 5️⃣ Upcoming Events Preview ================================== -->
+<section id="events-preview" class="py-20 bg-beige">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 class="text-4xl font-heading text-primary mb-6" data-aos="fade-up">Upcoming Events</h2>
+        <div id="eventsContainer" class="grid md:grid-cols-3 gap-8"></div>
+        <div class="mt-8">
+            <a href="#events"
+               class="px-8 py-3 bg-primary text-white rounded-full shadow hover:bg-primary/90 transition">
+                View All Events
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ==== 6️⃣ Testimonials Slider ===================================== -->
+<section id="testimonials" class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-4xl font-heading text-primary mb-10" data-aos="fade-up">What Our Family Says</h2>
+
+        <div class="swiper testimonialSwiper">
+            <div class="swiper-wrapper" id="testimonialWrapper">
+                <!-- Filled dynamically -->
+            </div>
+            <div class="swiper-pagination mt-6"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ==== 7️⃣ About the Church (Timeline) ============================= -->
+<section id="about" class="py-20 bg-beige">
+    <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-4xl font-heading text-primary text-center mb-12" data-aos="fade-up">About Us</h2>
+        <div class="grid md:grid-cols-2 gap-12">
+            <!-- History -->
+            <div data-aos="fade-right">
+                <h3 class="text-2xl font-heading text-primary mb-4">Our History</h3>
+                <p class="text-lg text-secondary leading-relaxed">
+                    International Gospel Acts Church (IGAC) Mwea began as a small fellowship
+                    in 2025 with a vision to “raise a generation that
+                    worships relentlessly”. Over the period, we have grown to a family of
+                    over 500 members, impacting communities across Kenya.
+                </p>
+            </div>
+            <!-- Mission & Vision -->
+            <div data-aos="fade-left">
+                <h3 class="text-2xl font-heading text-primary mb-4">Mission & Vision</h3>
+                <p class="text-lg text-secondary mb-4">
+                    <strong>Mission:</strong> To make disciples who love God,
+                    love people, and love the world.
+                </p>
+                <p class="text-lg text-secondary">
+                    <strong>Vision:</strong> A generation empowered by the Holy
+                    Spirit to transform nations.
+                </p>
+            </div>
+
+            <!-- Core Values -->
+            <div data-aos="fade-right" class="md:col-span-2">
+                <h3 class="text-2xl font-heading text-primary mb-4">Core Values</h3>
+                <ul class="grid md:grid-cols-2 gap-4">
+                    <li class="flex items-center space-x-2">
+                        <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor"
+                             viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="2" d="M9 12l2 2 4-4"/>
+                        </svg>
+                        <span class="text-lg text-secondary font-medium">Faithfulness</span>
+                    </li>
+                    <li class="flex items-center space-x-2">
+                        <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor"
+                             viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="2" d="M9 12l2 2 4-4"/>
+                        </svg>
+                        <span class="text-lg text-secondary font-medium">Community</span>
+                    </li>
+                    <li class="flex items-center space-x-2">
+                        <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor"
+                             viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="2" d="M9 12l2 2 4-4"/>
+                        </svg>
+                        <span class="text-lg text-secondary font-medium">Excellence</span>
+                    </li>
+                    <li class="flex items-center space-x-2">
+                        <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor"
+                             viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="2" d="M9 12l2 2 4-4"/>
+                        </svg>
+                        <span class="text-lg text-secondary font-medium">Servanthood</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==== 8️⃣ Leadership (Senior Pastor & First Lady) ================= -->
+<section id="leadership" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 class="text-4xl font-heading text-primary mb-12" data-aos="fade-up">Our Leadership</h2>
+        <div class="grid md:grid-cols-2 gap-12" id="leadershipContainer">
+            <!-- Filled by JS -->
+        </div>
+    </div>
+</section>
+
+<!-- ==== 9️⃣ Gallery / Portfolio (Masonry) =========================== -->
+<section id="gallery" class="py-20 bg-beige">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-4xl font-heading text-primary text-center mb-8" data-aos="fade-up">Gallery</h2>
+
+        <!-- Category Filters -->
+        <div class="flex justify-center mb-6 space-x-4" x-data="{ filter: 'All' }">
+            <button @click="filter='All'"
+                    :class="filter==='All' ? 'bg-primary text-white' : 'bg-gray-200 text-secondary'"
+                    class="px-4 py-2 rounded-full transition">
+                All
+            </button>
+            <template x-for="cat in ['Worship','Youth','Outreach','Events']" :key="cat">
+                <button @click="filter=cat"
+                        :class="filter===cat ? 'bg-primary text-white' : 'bg-gray-200 text-secondary'"
+                        class="px-4 py-2 rounded-full transition"
+                        x-text="cat"></button>
+            </template>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="galleryContainer">
+            <!-- Filled dynamically -->
+        </div>
+    </div>
+</section>
+
+<!-- ==== 🔟 Sermons Page (Video / Audio) ============================= -->
+<section id="sermons" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-4xl font-heading text-primary text-center mb-8" data-aos="fade-up">Sermons</h2>
+
+        <!-- Search & Filters -->
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8 space-y-4 md:space-y-0">
+            <input type="text" placeholder="Search sermons..."
+                   class="border border-gray-300 rounded-md px-4 py-2 w-full md:w-1/3"
+                   id="sermonSearch">
+            <select id="sermonCategory"
+                    class="border border-gray-300 rounded-md px-4 py-2 w-full md:w-1/4">
+                <option value="">All Topics</option>
+                <option value="Faith">Faith</option>
+                <option value="Growth">Growth</option>
+                <option value="Prayer">Prayer</option>
+                <option value="Family">Family</option>
+            </select>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8" id="sermonContainer">
+            <!-- Filled via JS -->
+        </div>
+    </div>
+</section>
+
+<!-- ==== 1️⃣1️⃣ Events Detailed Page ==================================== -->
+<section id="events" class="py-20 bg-beige">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-4xl font-heading text-primary text-center mb-8" data-aos="fade-up">All Events</h2>
+        <div class="grid md:grid-cols-3 gap-8" id="eventsFullContainer">
+            <!-- Filled via JS -->
+        </div>
+    </div>
+</section>
+
+<!-- ==== 1️⃣2️⃣ Ministries ================================ -->
+<section id="ministries" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <h2 class="text-4xl font-heading text-primary mb-12" data-aos="fade-up">Our Ministries</h2>
+        <div class="flex flex-wrap justify-center gap-3 mb-8" id="ministriesFilters">
+            <!-- Filled by JS -->
+        </div>
+        <div class="grid md:grid-cols-3 gap-8" id="ministriesContainer">
+            <!-- Filled via JS -->
+        </div>
+    </div>
+</section>
+
+<!-- ==== 1️⃣3️⃣ Live Stream =================================== -->
+<section id="live" class="py-20 bg-beige">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 class="text-4xl font-heading text-primary mb-8" data-aos="fade-up">Live Stream</h2>
+
+        <div id="liveContainer" class="relative">
+            <!-- If live → embed iframe; else show countdown -->
+            <!-- Filled by JS -->
+        </div>
+    </div>
+</section>
+
+<!-- ==== 1️⃣4️⃣ Donation / Giving ============================= -->
+<section id="donation" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 class="text-4xl font-heading text-primary mb-8" data-aos="fade-up">Give & Bless</h2>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- M-Pesa Instructions -->
+            <div class="p-6 bg-primary/10 rounded-xl shadow" data-aos="fade-right">
+                <h3 class="text-2xl font-heading text-primary mb-4">(M‑Pesa)</h3>
+                <p class="text-lg text-secondary mb-4">
+                    Send your tithes & offerings to <strong>+254 722 378 051</strong>
+                    (IGAC Mwea) and include your name in the reference.
+                </p>
+                <a href="https://pay.google.com/payments?p=mpesa" target="_blank"
+                   class="inline-block px-6 py-2 bg-primary text-white rounded-full hover:bg-primary/90 transition">
+                    Pay with M‑Pesa
+                </a>
+                <div class="mt-4 flex justify-center">
+                    <img src="Lipanampesa.png" alt="M-Pesa logo" class="h-12 object-contain" />
+                </div>
+            </div>
+
+            <!-- PayPal / Online -->
+            <div class="p-6 bg-primary/10 rounded-xl shadow" data-aos="fade-left">
+                <h3 class="text-2xl font-heading text-primary mb-4">Online Giving</h3>
+                <p class="text-lg text-secondary mb-4">
+                    Secure donation via PayPal or credit card.
+                </p>
+                <!-- PayPal button (demo) -->
+                <form action="https://www.paypal.com/donate" method="post" target="_blank">
+                    <button type="submit"
+                            class="inline-block px-8 py-2 bg-primary text-white rounded-full hover:bg-primary/90 transition">
+                        Donate Online
+                    </button>
+                    <div class="mt-4 flex justify-center">
+                        <img src="paypal.jpeg" alt="PayPal logo" class="h-12 object-contain" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==== 1️⃣5️⃣ Contact Page (Editable) ======================== -->
+<section id="contact" class="py-20 bg-beige">
+    <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-4xl font-heading text-primary text-center mb-12" data-aos="fade-up">Contact Us</h2>
+        <div class="grid md:grid-cols-2 gap-10">
+            <!-- Contact Form -->
+            <div data-aos="fade-right">
+                <form id="contactForm"
+                      class="bg-white p-8 rounded-xl shadow space-y-6"
+                      action="https://formspree.io/f/your-form-id"
+                      method="POST">
+                    <div>
+                        <label class="block text-sm font-medium text-secondary mb-1">Name</label>
+                        <input type="text" name="name" required
+                               class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"/>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-secondary mb-1">Email</label>
+                        <input type="email" name="_replyto" required
+                               class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"/>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-secondary mb-1">Message</label>
+                        <textarea name="message" rows="4" required
+                                  class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                    </div>
+                    <button type="submit"
+                            class="w-full bg-primary text-white py-2 rounded-full hover:bg-primary/90 transition">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+
+            <!-- Contact Details + Map -->
+            <div class="space-y-6" data-aos="fade-left">
+                <div class="bg-white p-6 rounded-xl shadow">
+                    <h3 class="text-2xl font-heading text-primary mb-3">Get in Touch</h3>
+                    <p class="text-lg text-secondary mb-2"><strong>Phone:</strong> <span id="phone"></span></p>
+                    <p class="text-lg text-secondary mb-2"><strong>Email:</strong> <span id="email"></span></p>
+                    <p class="text-lg text-secondary"><strong>Address:</strong> <span id="address"></span></p>
+                </div>
+
+                <!-- Google Maps -->
+                <div class="rounded-xl overflow-hidden shadow-lg">
+                    <iframe id="mapIframe"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.1234567890!2d36.821946!3d-1.292066!2m3!1f0!2f0!3f0!4m2!3d-1.292066!4d36.821946"
+                            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+                <!-- WhatsApp + Floating Buttons -->
+                <div class="flex space-x-4">
+                    <a href="https://wa.me/254712883090" target="_blank"
+                       class="flex items-center justify-center w-12 h-12 bg-primary text-white rounded-full hover:bg-primary/90 transition">
+                        <img src="./whatsapp icon.png" alt="WhatsApp icon" class="h-6 w-6 object-contain" />
+                    </a>
+                    <a href="tel:+254712883090"
+                       class="flex items-center justify-center w-12 h-12 bg-primary text-white rounded-full hover:bg-primary/90 transition">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M3 5h2l.341 1.023a15.966 15.966 0 0011.448 11.448L18 20h2l1-4m-8 0v5m-2 3h8a2 2 0 002-2v-7l-1-5h-4a2 2 0 00-2 2v8"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==== 1️⃣6️⃣ Footer ============================================= -->
+<footer class="bg-secondary text-white py-10">
+    <div class="max-w-5xl mx-auto px-6 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <!-- Logo & Intro -->
+        <div>
+            <img src="logo.png" alt="IGAC Logo"
+                 class="h-12 w-12 mb-4 rounded-full">
+            <p class="text-sm">
+                International Gospel Acts Church – Mwea Branch <br>
+                Connecting hearts to God since 2025.
+            </p>
+            <div class="flex space-x-4 mt-4">
+                <a href="#" class="hover:text-primary"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-primary"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="hover:text-primary"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-primary"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+            <h3 class="font-heading text-lg mb-4">Quick Links</h3>
+            <ul class="space-y-2">
+                <li><a href="#home" class="hover:text-primary">Home</a></li>
+                <li><a href="#about" class="hover:text-primary">About</a></li>
+                <li><a href="#sermons" class="hover:text-primary">Sermons</a></li>
+                <li><a href="#events" class="hover:text-primary">Events</a></li>
+                <li><a href="#contact" class="hover:text-primary">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Service Times -->
+        <div>
+            <h3 class="font-heading text-lg mb-4">Service Times</h3>
+            <ul class="space-y-2">
+                <li>Sunday – 9:00 AM</li>
+                <li>Wednesday – 4:00 PM</li>
+                <li>Saturday – 4:00 PM</li>
+            </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div>
+            <h3 class="font-heading text-lg mb-4">Stay Updated</h3>
+            <form id="newsletterForm" action="https://formspree.io/f/your-newsletter-id" method="POST">
+                <input type="email" name="_replyto" placeholder="Your email"
+                       class="w-full px-3 py-2 mb-2 rounded-md text-secondary"
+                       required>
+                <button type="submit"
+                        class="w-full bg-primary text-white py-2 rounded-full hover:bg-primary/90 transition">
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="mt-12 text-center text-sm text-gray-300">
+        © <span id="currentYear"></span> International Gospel Acts Church – Mwea Branch. All rights reserved.
+    </div>
+</footer>
+
+<!-- ==== 1️⃣7️⃣ Misc UI (scroll top, back to top) ==================== -->
+<!-- WhatsApp Floating Button -->
+<a id="whatsappFloat" href="https://wa.me/254712883090" target="_blank"
+   class="fixed bottom-20 right-6 flex items-center justify-center w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition z-40"
+   aria-label="Chat with us on WhatsApp">
+    <img src="./whatsapp icon.png" alt="WhatsApp icon" class="h-7 w-7 object-contain" />
+</a>
+
+<button id="backToTop"
+        class="fixed bottom-6 right-6 bg-primary text-white p-3 rounded-full shadow-lg hidden hover:bg-primary/90 transition z-40"
+        aria-label="Back to top">
+    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M5 15l7-7 7 7"/>
+    </svg>
+</button>
+
+<!-- ==== 3️⃣ Scripts (libraries & init) ========================= -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/glightbox.min.js"></script>
+
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
